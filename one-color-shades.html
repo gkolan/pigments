@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pigments | HTML Color Picker</title>
+    <title>Pigments | Single Color HTML Shades</title>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">
     <meta name="description" content="Pigments project aims to provide 1920 random colors on every page refresh, different rainbow colors and shades for a single color with opacity combinations.">
@@ -12,7 +12,7 @@
     <link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
     <script src="assets/js/d3.min.js"></script>
 </head>
-<body style="padding-top:40px;">
+<body style="padding-top:80px;">
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -26,61 +26,17 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Random Colors</a></li>
+                <li><a href="index.html">Random Colors</a></li>
                 <li><a href="rainbow-colors.html">Rainbow Colors</a></li>
-                <li><a href="one-color-shades.html">One Color Shades</a></li>
+                <li class="active"><a href="one-color-shades.html">One Color Shades</a></li>
             </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><p class="navbar-text">Note: [ Website looks best on browser width > <span style="color: #F8FE03;">1900</span> ] &amp; [ Every Color Opacity on this page is set to <span style="color: #F8FE03;"> * 0.8 *</span> ]</p></li>
-            <li><button type="button" class="btn btn-warning navbar-btn no-rounded-corners" onclick="pageRefresh()">Refresh Colors</button></li>
-          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <script>
-    // SVG Width and Height
-    var width   = 1845;
-    var height  = 7690;
-
-    // Box Width and Height
-    var box_width = 75;
-    var box_height = 75;
-    
-    // How many boxes
-    var total_boxes = (width*height)/(box_width*box_height)
-
-    //Create SVG    
-    var svg = d3.select("body").append("svg").attr("width",width).attr("height",height);
-
-    //Create shapes using SVG
-    var i = 0;
-    var j = 0;
-    while (i <= width) {
-        j = 0;
-        while (j <= height) {
-            var randomColor = getRandHEXColor();
-            svg.append("rect").attr("x", i).attr("y", j).attr("width", box_width).attr("height", box_height).attr("fill", randomColor).attr("opacity", 0.8);
-            svg.append("text").attr("x", i).attr("y", j + box_height + 10).text(randomColor.toUpperCase()).attr("font-family", "sans-serif").attr("font-size", "11px").attr("fill", "#BDB5AF");
-            j = j + box_height +26;
-        }
-        i = i + box_width + 2;
-    }
-    function getRandHEXColor(){
-        return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
-        //return '#'+Math.floor(Math.random()*16777215).toString(16);
-        //http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript
-    }
-
-    function pageRefresh() {
-        return location.reload();
-    }
-    </script>
-    <hr>
     <div class="container-fluid">
         <div class="row">
             <address> 
-                <strong>Built by Gautam Kolan.</strong><br>
-                Libraries Used: bootstrap, d3.js<br> 
+                <strong>Working on it.</strong><br> 
             </address>
         </div>
     </div>

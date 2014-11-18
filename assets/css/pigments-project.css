@@ -1,0 +1,26 @@
+svg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 18px;
+    padding-bottom: 38px;
+}
+.navbar-brand {
+    font-family: 'Audiowide', cursive;
+    letter-spacing: 2px;
+    font-size: 24px;
+}
+.navbar-btn {
+    margin-right: 22px;
+}
+address {
+    margin-left:30px;
+}
+.navbar-text {
+    margin-right: 40px;
+}
+.no-rounded-corners {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Pigments | HTML Color Picker</title>
+    <title>Pigments | Random Rainbow HTML Colors</title>
     <meta charset="UTF-8">
     <meta content="utf-8" http-equiv="encoding">
     <meta name="description" content="Pigments project aims to provide 1920 random colors on every page refresh, different rainbow colors and shades for a single color with opacity combinations.">
@@ -26,13 +26,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Random Colors</a></li>
-                <li><a href="rainbow-colors.html">Rainbow Colors</a></li>
+                <li><a href="index.html">Random Colors</a></li>
+                <li class="active"><a href="rainbow-colors.html">Rainbow Colors</a></li>
                 <li><a href="one-color-shades.html">One Color Shades</a></li>
             </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><p class="navbar-text">Note: [ Website looks best on browser width > <span style="color: #F8FE03;">1900</span> ] &amp; [ Every Color Opacity on this page is set to <span style="color: #F8FE03;"> * 0.8 *</span> ]</p></li>
-            <li><button type="button" class="btn btn-warning navbar-btn no-rounded-corners" onclick="pageRefresh()">Refresh Colors</button></li>
+            <li><p class="navbar-text">Note: [ Website looks best on browser width > <span style="color: #F8FE03;">1900</span> ] &amp; [ Every Color Opacity on this page is set to <span style="color: #F8FE03;"> * 0.6 *</span> ]</p></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -58,19 +57,36 @@
     while (i <= width) {
         j = 0;
         while (j <= height) {
-            var randomColor = getRandHEXColor();
-            svg.append("rect").attr("x", i).attr("y", j).attr("width", box_width).attr("height", box_height).attr("fill", randomColor).attr("opacity", 0.8);
+            var step = i + j;
+            var randomColor = rainbow(total_boxes, step);
+            //var randomColor = getRandHEXColor();
+            svg.append("rect").attr("x", i).attr("y", j).attr("width", box_width).attr("height", box_height).attr("fill", randomColor).attr("opacity", 0.6);
             svg.append("text").attr("x", i).attr("y", j + box_height + 10).text(randomColor.toUpperCase()).attr("font-family", "sans-serif").attr("font-size", "11px").attr("fill", "#BDB5AF");
             j = j + box_height +26;
         }
         i = i + box_width + 2;
     }
-    function getRandHEXColor(){
-        return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
-        //return '#'+Math.floor(Math.random()*16777215).toString(16);
-        //http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript
+    function rainbow(numOfSteps, step) {
+        // http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript
+        // This function generates vibrant, "evenly spaced" colours (i.e. no clustering). This is ideal for creating easily distinguishable vibrant markers in Google Maps and other apps.
+        // Adam Cole, 2011-Sept-14
+        // HSV to RBG adapted from: http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
+        var r, g, b;
+        var h = step / numOfSteps;
+        var i = ~~(h * 6);
+        var f = h * 6 - i;
+        var q = 1 - f;
+        switch(i % 6){
+            case 0: r = 1, g = f, b = 0; break;
+            case 1: r = q, g = 1, b = 0; break;
+            case 2: r = 0, g = 1, b = f; break;
+            case 3: r = 0, g = q, b = 1; break;
+            case 4: r = f, g = 0, b = 1; break;
+            case 5: r = 1, g = 0, b = q; break;
+        }
+        var c = "#" + ("00" + (~ ~(r * 255)).toString(16)).slice(-2) + ("00" + (~ ~(g * 255)).toString(16)).slice(-2) + ("00" + (~ ~(b * 255)).toString(16)).slice(-2);
+        return (c);
     }
-
     function pageRefresh() {
         return location.reload();
     }
@@ -80,6 +96,7 @@
         <div class="row">
             <address> 
                 <strong>Built by Gautam Kolan.</strong><br>
+                Contributor: Adam Cole [stackoverflow] <br> 
                 Libraries Used: bootstrap, d3.js<br> 
             </address>
         </div>
